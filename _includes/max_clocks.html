@@ -18,7 +18,10 @@
 </form>
 </div>
 <div class="modal-footer">
-    <div style="float:left;">
+    <div class="alert alert-danger" id="maxClockAlert" role="alert" aria-hidden="true">
+        <h4 class="alert-heading">You may have timing issues with this setup.</h4>
+    </div>
+    <div >
        <h5>Clocks: <div id="maxcres"></div></h5>
     </div>
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -27,13 +30,20 @@
 <script>
     var maxc = document.forms["maxc"];
     var maxcres = document.getElementById('maxcres');
+    $("#maxClockAlert").hide();
 
     function UpdateMCForm()
     {
         var rpm = parseInt(maxc.elements["rpm"].value);
         var teeth = parseInt(maxc.elements["teeth"].value);
         var _out = (((teeth/(rpm/60))/(360/teeth)) * 1000000)/(1/16);
-        console.log(_out);
         maxcres.innerText = _out.toFixed(2).toString();
+        // Average speeduino main loop is 19,200 clocks, assume 20k for limit
+        // and alert if under that limit.
+        if (_out < 20000 && !isNaN(_out)) {
+            $("#maxClockAlert").show();
+        } else {
+            $("#maxClockAlert").hide();
+        }
     }
 </script>

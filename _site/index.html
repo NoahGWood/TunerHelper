@@ -7,51 +7,50 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
   <body>
-  <div class="container">
-<h1>TunerHelper</h1>
-<br>
-<div class="row">
-  <div class="col">
-    <div class="card">
-      <div class="card-header">
-        <h1>About</h1>
-      </div>
-      <div class="card-body">
-        <div class="card-text">
-          TunerHelper is a collection of free tools, calculators, and other information to help you tune your engine.
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <div class="wrapper">
+<nav class="navbar navbar-dark bg-dark navbar-vertical">
+  <div class="navbar-brand">
+    <h1>Calculators</h1>
+  </div>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Calculators
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#BSFC">Brake Specific Fuel Consumption</a>
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#flowrate">Minimum Flow Rate</a>
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#pflow">Flow Rate At Pressure</a>
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#mpglbs">MPG to Lbs/Hr (Gasoline)</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#max_clocks">Max Clocks (Speeduino)</a>
+    </div>
+  </ul>
+</nav>
+<div id="content">
+  <h1>TunerHelper</h1>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h1>About</h1>
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+            TunerHelper is a collection of free tools, calculators, and other information to help you tune your engine.
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flowrate">
-      Calculate Flow Rate
-    </button>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pflow">
-      Calculate Flow Rate @ Pressure
-    </button>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BSFC">
-      Calculate BSFC
-    </button>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#max_clocks">
-      Calculate Max Clocks (Speeduino)
-    </button>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mpglbs">
-      MPG to Lbs/Hr (Gasoline)
-    </button>
-  </div>
-</div>
+
 <!-- Modal -->
 <div class="modal fade" id="flowrate" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -107,64 +106,12 @@
   </div>
 </div>
 
-<div class="modal fade" id="pflow" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-    <h5 class="modal-title">Fuel Pressure & Flow Rate Calculator</h5>
-  </div>
-  <div class="modal-body">
-<form action="" id="pf">
-    <div class="form-group col-xs-4 col-md-4">
-        <label for="flowRate">
-            Flow Rate (lbs/hr)
-        </label>
-        <input type="number" id="flowRate"  oninput="UpdatePFForm()"/>
-    </div>
-    <div class="form-group col-xs-4 col-md-4">
-        <label for="ratedPressure">Rated Pressure (psi)</label>
-        <input type="number" id="ratedPressure" oninput="UpdatePFForm()"/>
-    </div>
-    <div class="form-group col-xs-4 col-md-4">
-        <label for="currentPressure">Current Pressure (psi)</label>
-        <input type="number" id="currentPressure" oninput="UpdatePFForm()"/>
-    </div>
-</form>
-</div>
-<div class="modal-footer">
-    <div style="float:left;">
-       <h5>Calculated Flow Rate: <div id="pfres"></div> lbs/hr</h5>
-    </div>
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-</div>
-
-<script>
-    var pf = document.forms["pf"];
-    var pfres= document.getElementById('pfres');
-
-    function UpdatePFForm()
-    {
-        var flowr = parseFloat(pf.elements["flowRate"].value);
-        var rp = parseFloat(pf.elements["ratedPressure"].value);
-        var cp = parseFloat(pf.elements["currentPressure"].value);
-        console.log(cp);
-        console.log(rp);
-        console.log(flowr);
-        console.log(Math.sqrt((cp/rp))*flowr);
-        pfres.innerText = (Math.sqrt(cp / rp) * flowr).toFixed(2).toString();
-    }
-</script>
-    </div>
-  </div>
-</div>
-
-
 <!-- Modal -->
 <div class="modal fade" id="BSFC" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Brake Specific Fuel Efficiency Calculator</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Brake Specific Fuel Consumption</h5>
   </div>
   <div class="modal-body">
 <form action="" id="bsfc">
@@ -277,7 +224,10 @@
 </form>
 </div>
 <div class="modal-footer">
-    <div style="float:left;">
+    <div class="alert alert-danger" id="maxClockAlert" role="alert" aria-hidden="true">
+        <h4 class="alert-heading">You may have timing issues with this setup.</h4>
+    </div>
+    <div >
        <h5>Clocks: <div id="maxcres"></div></h5>
     </div>
   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -286,14 +236,21 @@
 <script>
     var maxc = document.forms["maxc"];
     var maxcres = document.getElementById('maxcres');
+    $("#maxClockAlert").hide();
 
     function UpdateMCForm()
     {
         var rpm = parseInt(maxc.elements["rpm"].value);
         var teeth = parseInt(maxc.elements["teeth"].value);
         var _out = (((teeth/(rpm/60))/(360/teeth)) * 1000000)/(1/16);
-        console.log(_out);
         maxcres.innerText = _out.toFixed(2).toString();
+        // Average speeduino main loop is 19,200 clocks, assume 20k for limit
+        // and alert if under that limit.
+        if (_out < 20000 && !isNaN(_out)) {
+            $("#maxClockAlert").show();
+        } else {
+            $("#maxClockAlert").hide();
+        }
     }
 </script>
     </div>
@@ -303,10 +260,5 @@
 
 
 </div>
-<!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>

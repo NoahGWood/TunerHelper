@@ -1,50 +1,43 @@
 ---
 ---
 {% include header.html %}
-<h1>TunerHelper</h1>
-<br>
-<div class="row">
-  <div class="col">
-    <div class="card">
-      <div class="card-header">
-        <h1>About</h1>
-      </div>
-      <div class="card-body">
-        <div class="card-text">
-          TunerHelper is a collection of free tools, calculators, and other information to help you tune your engine.
+<nav class="navbar navbar-dark bg-dark navbar-vertical">
+  <div class="navbar-brand">
+    <h1>Calculators</h1>
+  </div>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Calculators
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#BSFC">Brake Specific Fuel Consumption</a>
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#flowrate">Minimum Flow Rate</a>
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#pflow">Flow Rate At Pressure</a>
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#mpglbs">MPG to Lbs/Hr (Gasoline)</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#max_clocks">Max Clocks (Speeduino)</a>
+    </div>
+  </ul>
+</nav>
+<div id="content">
+  <h1>TunerHelper</h1>
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h1>About</h1>
+        </div>
+        <div class="card-body">
+          <div class="card-text">
+            TunerHelper is a collection of free tools, calculators, and other information to help you tune your engine.
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-<div class="row">
-  <div class="col">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#flowrate">
-      Calculate Flow Rate
-    </button>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pflow">
-      Calculate Flow Rate @ Pressure
-    </button>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#BSFC">
-      Calculate BSFC
-    </button>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#max_clocks">
-      Calculate Max Clocks (Speeduino)
-    </button>
-  </div>
-  <div class="col">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mpglbs">
-      MPG to Lbs/Hr (Gasoline)
-    </button>
-  </div>
-</div>
+
 <!-- Modal -->
 <div class="modal fade" id="flowrate" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -53,15 +46,6 @@
     </div>
   </div>
 </div>
-
-<div class="modal fade" id="pflow" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      {% include pressureflow.html %}
-    </div>
-  </div>
-</div>
-
 
 <!-- Modal -->
 <div class="modal fade" id="BSFC" tabindex="-1" role="dialog">
