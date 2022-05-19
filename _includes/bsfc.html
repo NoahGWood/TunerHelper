@@ -1,0 +1,40 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Brake Specific Fuel Efficiency Calculator</h5>
+  </div>
+  <div class="modal-body">
+<form action="" id="bsfc">
+    <div class="form-group col-xs-4 col-md-4">
+        <label for="lbsPerHour">
+            Lbs of fuel per hour
+        </label>
+        <input type="number" id="lbsPerHour"  oninput="UpdateBSFCForm()"/>
+    </div>
+    <div class="form-group col-xs-4 col-md-4">
+        <label for="hp">
+            Horsepower
+        </label>
+        <input type="number" id="hp" oninput="UpdateBSFCForm()"/>
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+    <div style="float:left;">
+       <h5>BSFC: <div id="bsfcres"></div></h5>
+    </div>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+
+<script>
+    var bsfc = document.forms["bsfc"];
+    var res= document.getElementById('bsfcres');
+
+    function UpdateBSFCForm()
+    {
+        var lbs = parseFloat(bsfc.elements["lbsPerHour"].value);
+        var hp = parseFloat(bsfc.elements["hp"].value);
+        if (!isNaN(lbs) && !isNaN(hp))
+        {
+            bsfcres.innerText = (lbs/hp).toFixed(2).toString();
+        }
+    }
+</script>

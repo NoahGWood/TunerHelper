@@ -1,0 +1,39 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Maximum Clock Cycles Allowable @ RPM</h5>
+  </div>
+  <div class="modal-body">
+<form action="" id="maxc">
+    <div class="form-group col-xs-4 col-md-4">
+        <label for="rpm">
+            RPM
+        </label>
+        <input type="number" id="rpm"  oninput="UpdateMCForm()"/>
+    </div>
+    <div class="form-group col-xs-4 col-md-4">
+        <label for="teeth">
+            Teeth:
+        </label>
+        <input type="number" id="teeth" oninput="UpdateMCForm()"/>
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+    <div style="float:left;">
+       <h5>Clocks: <div id="maxcres"></div></h5>
+    </div>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+
+<script>
+    var maxc = document.forms["maxc"];
+    var maxcres = document.getElementById('maxcres');
+
+    function UpdateMCForm()
+    {
+        var rpm = parseInt(maxc.elements["rpm"].value);
+        var teeth = parseInt(maxc.elements["teeth"].value);
+        var _out = (((teeth/(rpm/60))/(360/teeth)) * 1000000)/(1/16);
+        console.log(_out);
+        maxcres.innerText = _out.toFixed(2).toString();
+    }
+</script>
