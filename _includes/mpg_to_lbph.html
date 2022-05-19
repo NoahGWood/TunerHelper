@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Miles Per Gallon To Lbs/Hour</h5>
+  </div>
+  <div class="modal-body">
+<form action="" id="mpgLbsForm">
+    <div class="form-group col-xs-4 col-md-4">
+        <label for="mpgCity">
+            Miles Per Gallon (City)
+        </label>
+        <input type="number" id="mpgCity" oninput="UpdateMPGForm()">
+    </div>
+    <div class="form-group col-xs-4 col-md-4">
+        <label for="mpgHwy">
+            Miles Per Gallon (Highway)
+        </label>
+        <input type="number" id="mpgHwy" oninput="UpdateMPGForm()">
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+    <div>
+       <h5>City lbs/hr: <div id="lbsCity"></div></h5>
+       <h5>Highway lbs/hr: <div id="lbsHwy"></div></h5>
+    </div>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+
+<script>
+    var mpglbsf = document.forms["mpgLbsForm"];
+    var mpglbsres1 = document.getElementById('lbsCity');
+    var mpglbsres2 = document.getElementById('lbsHwy');
+
+    function UpdateMPGForm()
+    {
+        mpglbsres1.innerText = ((21 / parseFloat(mpglbsf.elements["mpgCity"].value))*6.2).toFixed(2);
+        mpglbsres2.innerText = ((48 / parseFloat(mpglbsf.elements["mpgHwy"].value))*6.2).toFixed(2);
+    }
+</script>
