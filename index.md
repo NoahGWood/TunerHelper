@@ -35,3 +35,17 @@ Your Pages site will use the layout and styles from the Jekyll theme you have se
 ### Support or Contact
 
 Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+
+
+<div class="container">
+    <div id="repo-cards" class="columns is-multiline list">
+        {% for repo_data in site.data.all_repos %}
+            {% assign repo = repo_data[1] %}
+            <div class="column is-3-widescreen is-4-desktop is-6-tablet is-8-mobile">
+                DERP
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script> var options = { valueNames: [ { name: 'list-name', attr: 'data-name' } ] }; var userList = new List('repos', options); </script> 
