@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Tuner Helper</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   </head>
-  <body>
+  <body class="p-1">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -14,29 +14,50 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
   <div class="wrapper">
-<nav class="navbar navbar-dark bg-dark navbar-vertical">
-  <div class="navbar-brand">
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand">
     <h1>Tuner Helper</h1>
-  </div>
-  <ul class="navbar-nav mr-auto">
+  </a>
+  <ul class="nav">
+    <!--    <li class="nav-item">
+      <a class="nav-link" type="button" onclick="loadToothViewer()">Tooth Viewer</a>
+    </li> -->
     <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Calculators
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#BSFC">Brake Specific Fuel Consumption</a>
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#flowrate">Minimum Flow Rate</a>
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#pflow">Flow Rate At Pressure</a>
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#mpglbs">MPG to Lbs/Hr (Gasoline)</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#max_clocks">Max Clocks (Speeduino)</a>
-    </div>
+      <ul class="navbar-nav">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Calculators
+        </a>
+        <div class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdown">
+          <h5 class="text-secondary">Compression</h5>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#compRatio">Compression
+            Ratio (Static)</a>
+          <h5 class="text-warning">Experimental</h5>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#max_clocks">Max Clocks
+            (Speeduino)</a>
+          <div class="dropdown-divider"></div>
+          <h5 class="text-danger">Fuel</h5>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#BSFC">Brake Specific Fuel
+            Consumption</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#flowrate">Minimum Flow
+            Rate</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#pflow">Flow Rate At
+            Pressure</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#mpglbs">MPG to Lbs/Hr
+            (Gasoline)</a>
+          <div class="dropdown-divider"></div>
+          <h5 class="text-success">Sensors</h5>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#VSS">VSS Pulses Per
+            Mile/KM</a>
+        </div>
+      </ul>
+    </li>
   </ul>
 </nav>
-<div id="content">
-  <div class="row">
+<div class="content p-3">
+  <div class="row p-3">
     <div class="col">
-      <div class="card">
+      <div class="card bg-dark text-light">
         <div class="card-header">
           <h1>About</h1>
         </div>
@@ -48,13 +69,105 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col">
+<!--      <div class="card">
+    <div class="card-header">
+        Useful Videos
+    </div>
+    <ul class="card-body navbar navbar-dark bg-dark navbar-nav">
+        <li class="nav-item active"> <a class="nav-link" href="#">Home </a> </li>
+        <li class="nav-item"><a class="nav-link" href="#"> About </a></li>
+        <li class="nav-item dropdown" id="myDropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"> Treeview menu </a>
+            <ul class="dropdown-menu">
+                <li> <a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
+                <li> <a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
+                    <ul class="submenu dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
+                            <ul class="submenu dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Multi level 1</a></li>
+                                <li><a class="dropdown-item" href="#">Multi level 2</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
+                        <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
+                    </ul>
+                </li>
+                <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
+                <li><a class="dropdown-item" href="#"> Dropdown item 4 </a></li>
+            </ul>
+        </li>
+    </ul>
+</div>-->
+    </div>
+    <div class="col">
+      <div class="card bg-dark text-light">
+    <div class="card-header">Calculators</div>
+    <div class="card-body navbar navbar-dark bg-dark navbar-nav">
+      <div>
+        <h5 class="dropdown-toggle text-light" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Compression
+        </h5>
+        <div class="dropdown-menu bg-dark text-light">
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#compRatio">Compression
+            Ratio (Static)</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="dropdown-toggle text-warning" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Experimental
+        </h5>
+        <div class="dropdown-menu bg-dark text-light" id="experimentalDropdown">
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#max_clocks">Max Clocks
+            (Speeduino)</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="dropdown-toggle text-danger" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Fuel
+        </h5>
+        <div class="dropdown-menu bg-dark text-light">
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#BSFC">Brake Specific
+            Fuel Consumption</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#flowrate">Minimum Flow
+            Rate</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#pflow">Flow Rate At
+            Pressure</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#mpglbs">MPG to Lbs/Hr
+            (Gasoline)</a>
+        </div>
+      </div>
+      <div>
+        <h5 class="dropdown-toggle text-success" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          Sensors
+        </h5>
+        <div class="dropdown-menu bg-dark text-light">
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#VSS">VSS Pulses Per
+            Mile/KM</a>
+        </div>
+      </div>
+    </div>
+  </div>
+    </div>
+    <div class="col">
+    </div>
+  </div>
 </div>
+
+
 
 <!-- Modal -->
 <div class="modal fade" id="flowrate" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">Injector Flow Rate Calculator</h5>
 </div>
 <div class="modal-body">
@@ -101,15 +214,15 @@
 
     }
 </script>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="pflow" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+  
+  <!-- Modal -->
+  <div class="modal fade" id="pflow" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
     <h5 class="modal-title">Fuel Pressure & Flow Rate Calculator</h5>
   </div>
   <div class="modal-body">
@@ -153,15 +266,15 @@
         pfres.innerText = (Math.sqrt(cp / rp) * flowr).toFixed(2).toString();
     }
 </script>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="BSFC" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+  
+  <!-- Modal -->
+  <div class="modal fade" id="BSFC" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">Brake Specific Fuel Consumption</h5>
   </div>
   <div class="modal-body">
@@ -201,15 +314,15 @@
         }
     }
 </script>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="mpglbs" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+  
+  <!-- Modal -->
+  <div class="modal fade" id="mpglbs" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">Miles Per Gallon To Lbs/Hour</h5>
   </div>
   <div class="modal-body">
@@ -247,15 +360,15 @@
         mpglbsres2.innerText = ((48 / parseFloat(mpglbsf.elements["mpgHwy"].value))*6.2).toFixed(2);
     }
 </script>
+      </div>
     </div>
   </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="max_clocks" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
+  
+  <!-- Modal -->
+  <div class="modal fade" id="max_clocks" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">Maximum Clock Cycles Allowable @ RPM</h5>
   </div>
   <div class="modal-body">
@@ -304,12 +417,214 @@
         }
     }
 </script>
+      </div>
     </div>
   </div>
+  
+  <div class="modal fade" id="compRatio" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Compression Ratio Calculator</h5>
+</div>
+<div class="modal-body">
+    <form action="" id="compratio">
+        <div class="row">
+            <div class="form-group col bg-light">
+                <label for="bore">
+                    Cylinder Bore
+                </label>
+                <input type="number" id="bore" oninput="UpdateCompRatio()" />
+                <select id="boreUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+            <div class="form-group col bg-light">
+                <label for="stroke">
+                    Cylinder Stroke
+                </label>
+                <input type="number" id="stroke" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="strokeUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col bg-light">
+                <label for="dome">
+                    Piston Dish/Dome
+                </label>
+                <input type="number" id="dome" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="domeUnits" oninput="UpdateCompRatio()">
+                    <option value="16.387">CI</option>
+                    <option value="1" selected="selected">CC</option>
+                </select>
+                <select id="domeType" oninput="UpdateCompRatio()">
+                    <option value="1">Dish</option>
+                    <option value="-1">Dome</option>
+                </select>
+            </div>
+            <div class="form-group col bg-light">
+                <label for="pclear">
+                    Piston:Deck Clearance
+                </label>
+                <input type="number" id="pclear" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="pclearUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col bg-light">
+                <label for="hgbore">
+                    Head Gasket Bore
+                </label>
+                <input type="number" id="hgbore" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="hgboreUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+            <div class="form-group col bg-light">
+                <label for="hgcompress">
+                    Head Gasket Thickness
+                </label>
+                <input type="number" id="hgcompress" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="hgcompressUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col bg-light">
+                <label for="chamberVol">
+                    Combustion Chamber Volume
+                </label>
+                <input type="number" id="chamberVol" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="chamberVolUnits" oninput="UpdateCompRatio()">
+                    <option value="16.387">CI</option>
+                    <option value="1" selected="selected">CC</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div>
+        <h5>Compression Ratio:<br />
+            <p id="compratiores"></p>
+        </h5>
+    </div>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 </div>
 
+<script>
+    var compratio = document.forms["compratio"];
+    var compratiores = document.getElementById('compratiores');
+    var compratiores2 = document.getElementById('compratiores2');
+
+    function UpdateCompRatio() {
+        var cb = parseFloat(compratio.elements["bore"].value) * parseFloat(compratio.elements["boreUnits"].value);
+        var stroke = parseFloat(compratio.elements["stroke"].value) * parseFloat(compratio.elements["strokeUnits"].value);
+        var dome = parseFloat(compratio.elements["dome"].value) * parseFloat(compratio.elements["domeUnits"].value) * parseFloat(compratio.elements["domeType"].value);
+        var pclear = parseFloat(compratio.elements["pclear"].value) * parseFloat(compratio["pclearUnits"].value);
+        var hgbore = parseFloat(compratio.elements["hgbore"].value) * parseFloat(compratio.elements["hgboreUnits"].value);
+        var hgcompress = parseFloat(compratio.elements["hgcompress"].value) * parseFloat(compratio.elements["hgcompressUnits"].value);
+        var sweptCC = (cb / 2) ** 2 * Math.PI * stroke;
+        //Clearance Volume = Piston Volume (dome) + Deck Volume + Gasket Volume + Combustion Chamber Volume
+        var deckVol = (cb / 2) ^ 2 * pclear;
+        var gasketVol = (hgbore / 2) ^ 2 * hgcompress;
+        var chamberVol = parseFloat(compratio.elements["chamberVol"].value) * parseFloat(compratio.elements["chamberVolUnits"].value);
+        var clearVol = dome + deckVol + gasketVol + chamberVol;
+        var compressionRatio = (sweptCC + clearVol) / clearVol;
+        console.log(dome);
+        console.log(clearVol);
+        console.log(gasketVol);
+        console.log(chamberVol);
+        compratiores.innerText = compressionRatio.toFixed(1).toString() + ":1";
+
+    }
+</script>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="modal fade" id="VSS" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Vehicle Speed Calculator</h5>
+  </div>
+  <div class="modal-body">
+<form action="" id="vssForm">
+    <div class="form-group">
+        <label for="tireSize">
+            Tire Size (diameter):
+        </label>
+        <input type="number" id="tireSize" oninput="UpdateVSSForm()" step="0.1"/>
+        <select id="tireSizeUnits" oninput="UpdateVSSForm()">
+            <option value="2.539998628" selected="selected">IN</option>
+            <option value="1">CM</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="axleRatio">
+            Axel Ratio:
+        </label>
+        <input type="number" id="axleRatio" oninput="UpdateVSSForm()" step="0.001"/>
+    </div>
+    <div class="form-group">
+        <label for="vssTeeth">
+            Teeth (Pulses/Rotation)
+        </label>
+        <input type="number" id="vssTeeth" oninput="UpdateVSSForm()">
+    </div>
+    <div class="form-group">
+        <label for="mileOrKM">
+            Pulses Per: 
+        </label>
+        <select id="mileOrKM" oninput="UpdateVSSForm()">
+            <option value="1.609344006" selected="selected">Mile</option>
+            <option value="1">Kilometer</option>
+        </select>
+        <h4 id="vssres"></h4>
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+
+<script>
+    var vssForm = document.forms["vssForm"];
+    var vssres= document.getElementById('vssres');
+
+    function UpdateVSSForm()
+    {
+        // cm / km = 100000
+        var cmPerRot = parseFloat(vssForm.elements["tireSize"].value) * parseFloat(vssForm.elements["tireSizeUnits"].value) * Math.PI;
+        var rotPerKM = 100000/cmPerRot;
+        var driveRotPerKM = rotPerKM * parseFloat(vssForm.elements["axleRatio"].value);
+        var teethPerKM = driveRotPerKM * parseInt(vssForm.elements["vssTeeth"].value) * parseFloat(vssForm.elements["mileOrKM"].value);
+        vssres.innerText = teethPerKM.toFixed(1);
+    }
+</script>
+      </div>
+    </div>
+  </div>
 
 
+<script>
+  function loadToothViewer() {
+    console.log("loading tooth viewer");
+  }
+
+</script>
 </div>
   </body>
 </html>

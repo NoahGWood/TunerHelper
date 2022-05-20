@@ -1,0 +1,125 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Compression Ratio Calculator</h5>
+</div>
+<div class="modal-body">
+    <form action="" id="compratio">
+        <div class="row">
+            <div class="form-group col bg-light">
+                <label for="bore">
+                    Cylinder Bore
+                </label>
+                <input type="number" id="bore" oninput="UpdateCompRatio()" />
+                <select id="boreUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+            <div class="form-group col bg-light">
+                <label for="stroke">
+                    Cylinder Stroke
+                </label>
+                <input type="number" id="stroke" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="strokeUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col bg-light">
+                <label for="dome">
+                    Piston Dish/Dome
+                </label>
+                <input type="number" id="dome" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="domeUnits" oninput="UpdateCompRatio()">
+                    <option value="16.387">CI</option>
+                    <option value="1" selected="selected">CC</option>
+                </select>
+                <select id="domeType" oninput="UpdateCompRatio()">
+                    <option value="1">Dish</option>
+                    <option value="-1">Dome</option>
+                </select>
+            </div>
+            <div class="form-group col bg-light">
+                <label for="pclear">
+                    Piston:Deck Clearance
+                </label>
+                <input type="number" id="pclear" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="pclearUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col bg-light">
+                <label for="hgbore">
+                    Head Gasket Bore
+                </label>
+                <input type="number" id="hgbore" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="hgboreUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+            <div class="form-group col bg-light">
+                <label for="hgcompress">
+                    Head Gasket Thickness
+                </label>
+                <input type="number" id="hgcompress" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="hgcompressUnits" oninput="UpdateCompRatio()">
+                    <option value="2.54">IN</option>
+                    <option value="1" selected="selected">CM</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col bg-light">
+                <label for="chamberVol">
+                    Combustion Chamber Volume
+                </label>
+                <input type="number" id="chamberVol" oninput="UpdateCompRatio()" step="0.001" />
+                <select id="chamberVolUnits" oninput="UpdateCompRatio()">
+                    <option value="16.387">CI</option>
+                    <option value="1" selected="selected">CC</option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div>
+        <h5>Compression Ratio:<br />
+            <p id="compratiores"></p>
+        </h5>
+    </div>
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+</div>
+
+<script>
+    var compratio = document.forms["compratio"];
+    var compratiores = document.getElementById('compratiores');
+    var compratiores2 = document.getElementById('compratiores2');
+
+    function UpdateCompRatio() {
+        var cb = parseFloat(compratio.elements["bore"].value) * parseFloat(compratio.elements["boreUnits"].value);
+        var stroke = parseFloat(compratio.elements["stroke"].value) * parseFloat(compratio.elements["strokeUnits"].value);
+        var dome = parseFloat(compratio.elements["dome"].value) * parseFloat(compratio.elements["domeUnits"].value) * parseFloat(compratio.elements["domeType"].value);
+        var pclear = parseFloat(compratio.elements["pclear"].value) * parseFloat(compratio["pclearUnits"].value);
+        var hgbore = parseFloat(compratio.elements["hgbore"].value) * parseFloat(compratio.elements["hgboreUnits"].value);
+        var hgcompress = parseFloat(compratio.elements["hgcompress"].value) * parseFloat(compratio.elements["hgcompressUnits"].value);
+        var sweptCC = (cb / 2) ** 2 * Math.PI * stroke;
+        //Clearance Volume = Piston Volume (dome) + Deck Volume + Gasket Volume + Combustion Chamber Volume
+        var deckVol = (cb / 2) ^ 2 * pclear;
+        var gasketVol = (hgbore / 2) ^ 2 * hgcompress;
+        var chamberVol = parseFloat(compratio.elements["chamberVol"].value) * parseFloat(compratio.elements["chamberVolUnits"].value);
+        var clearVol = dome + deckVol + gasketVol + chamberVol;
+        var compressionRatio = (sweptCC + clearVol) / clearVol;
+        console.log(dome);
+        console.log(clearVol);
+        console.log(gasketVol);
+        console.log(chamberVol);
+        compratiores.innerText = compressionRatio.toFixed(1).toString() + ":1";
+
+    }
+</script>

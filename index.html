@@ -1,29 +1,50 @@
 ---
 ---
 {% include header.html %}
-<nav class="navbar navbar-dark bg-dark navbar-vertical">
-  <div class="navbar-brand">
+<nav class="navbar navbar-dark bg-dark">
+  <a class="navbar-brand">
     <h1>Tuner Helper</h1>
-  </div>
-  <ul class="navbar-nav mr-auto">
+  </a>
+  <ul class="nav">
+    <!--    <li class="nav-item">
+      <a class="nav-link" type="button" onclick="loadToothViewer()">Tooth Viewer</a>
+    </li> -->
     <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      Calculators
-    </a>
-    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#BSFC">Brake Specific Fuel Consumption</a>
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#flowrate">Minimum Flow Rate</a>
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#pflow">Flow Rate At Pressure</a>
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#mpglbs">MPG to Lbs/Hr (Gasoline)</a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" type="button" data-toggle="modal" data-target="#max_clocks">Max Clocks (Speeduino)</a>
-    </div>
+      <ul class="navbar-nav">
+        <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+          aria-expanded="false">
+          Calculators
+        </a>
+        <div class="dropdown-menu bg-dark text-light" aria-labelledby="navbarDropdown">
+          <h5 class="text-secondary">Compression</h5>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#compRatio">Compression
+            Ratio (Static)</a>
+          <h5 class="text-warning">Experimental</h5>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#max_clocks">Max Clocks
+            (Speeduino)</a>
+          <div class="dropdown-divider"></div>
+          <h5 class="text-danger">Fuel</h5>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#BSFC">Brake Specific Fuel
+            Consumption</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#flowrate">Minimum Flow
+            Rate</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#pflow">Flow Rate At
+            Pressure</a>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#mpglbs">MPG to Lbs/Hr
+            (Gasoline)</a>
+          <div class="dropdown-divider"></div>
+          <h5 class="text-success">Sensors</h5>
+          <a class="dropdown-item text-light" type="button" data-toggle="modal" data-target="#VSS">VSS Pulses Per
+            Mile/KM</a>
+        </div>
+      </ul>
+    </li>
   </ul>
 </nav>
-<div id="content">
-  <div class="row">
+<div class="content p-3">
+  <div class="row p-3">
     <div class="col">
-      <div class="card">
+      <div class="card bg-dark text-light">
         <div class="card-header">
           <h1>About</h1>
         </div>
@@ -35,53 +56,26 @@
       </div>
     </div>
   </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="flowrate" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      {% include flowrate.html %}
+  <div class="row">
+    <div class="col">
+<!--      {% include videos.html %}-->
     </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="pflow" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      {% include pressureflow.html %}
+    <div class="col">
+      {% include calculators.html %}
     </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="BSFC" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      {% include bsfc.html %}
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="mpglbs" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      {% include mpg_to_lbph.html %}
-    </div>
-  </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="max_clocks" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      {% include max_clocks.html %}
+    <div class="col">
     </div>
   </div>
 </div>
 
 
+{% include modals.html %}
 
+
+<script>
+  function loadToothViewer() {
+    console.log("loading tooth viewer");
+  }
+
+</script>
 {% include footer.html %}
